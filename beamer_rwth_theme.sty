@@ -1,0 +1,64 @@
+\ProvidesPackage{beamer_rwth_theme}
+
+\usepackage{beamer_cmd}
+\usepackage{tipa}
+%-------------------------- style definition -------------------------------------
+
+\definecolor{color0}{RGB}{0,0,0} % Black 
+\definecolor{color1}{RGB}{0,83,159} % RWTH blue
+\definecolor{color2}{RGB}{227,0,102} % RWTH magenta
+
+% for later use
+
+% \definecolor{rwthtuerkis}{HTML}{0098A1}
+% \definecolor{rwthgruen}{HTML}{57AB27}
+% \definecolor{turquoise}{HTML}{43C6DB}
+% \definecolor{dayskyblue}{HTML}{82CAFF}
+% \definecolor{purplemimosa}{HTML}{9E7BFF}
+% \definecolor{tronblue}{HTML}{7DFDFE}
+% \definecolor{iceberg}{HTML}{56A5EC}
+% \definecolor{saffron}{HTML}{FBB917}
+% \definecolor{rwthblack}{RGB}{0,0,0}
+% \definecolor{rwthwhite}{RGB}{255,255,255}
+% \definecolor{rwthgrey}{RGB}{204,204,204}
+% \definecolor{rwthlightblue}{RGB}{142,186,226}
+% \definecolor{rwthsuperlightgrey}{RGB}{247,247,247}
+% \definecolor{rwthpetrol}{RGB}{0,97,101}
+% \definecolor{rwthteal}{RGB}{0,152,161}
+% \definecolor{rwthmaigruen}{RGB}{189,205,0}
+% \definecolor{rwthgelb}{RGB}{87,171,39}
+% \definecolor{rwthyellow}{RGB}{255,237,0}
+% \definecolor{rwthorange}{RGB}{246,168,0}
+% \definecolor{rwthrot}{RGB}{204,7,30}
+% \definecolor{rwthbordeaux}{RGB}{161,16,53}
+% \definecolor{rwthviolett}{RGB}{97,33,88}
+% \definecolor{rwthlila}{RGB}{122,111,172}
+
+\newcommand\AtPagemyUpperLeft[1]{\AtPageLowerLeft{%
+\put(\LenToUnit{0.912\paperwidth},\LenToUnit{0.898\paperheight}){#1}}}
+\AddToShipoutPictureFG{
+  \AtPagemyUpperLeft{{
+  % don't put the desy logo into the right corner of the title page
+  \ifnum\c@framenumber>1%
+  \includegraphics[width=1cm,keepaspectratio]{rwth_3physik_b_englisch_rgb.png}
+  \fi%
+  }}
+}%
+
+\setbeamerfont{institute}{size=\large}
+\setbeamerfont{auther}{size=\large}
+
+% Title page definition and layout
+
+\addtobeamertemplate{title page}{%
+\begin{tikzpicture}[overlay, remember picture]
+% background image (needs to be inserted first!!!)
+\node[opacity=.2, at=(current page.center)] {\includegraphics
+[width=1.0\paperwidth, keepaspectratio]{images/cms_artist.png}};
+% logos to be displayed on the titel page
+\node[xshift=3.5cm, yshift=-8cm] at (current page.north west) {
+	\includegraphics[width=0.6\textwidth]{rwth_3physik_b_englisch_rgb.png}};
+\node[xshift=11cm, yshift=-8cm] at (current page.north west) {
+	\includegraphics[width=0.25\textwidth]{DESYlogo_blau.png}};
+\end{tikzpicture}
+}{}

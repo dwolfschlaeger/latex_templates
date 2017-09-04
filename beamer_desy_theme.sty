@@ -1,0 +1,55 @@
+\ProvidesPackage{beamer_desy_theme}
+
+\usepackage{beamer_cmd}
+\usepackage{tipa}
+
+%-------------------------- style definition -------------------------------------
+
+\definecolor{color0}{RGB}{0,0,0} % Black 
+\definecolor{color1}{RGB}{1,165,236} % DESY blue
+\definecolor{color2}{RGB}{232,151,0} % DESY orange
+
+\newcommand\AtPagemyUpperLeft[1]{\AtPageLowerLeft{%
+\put(\LenToUnit{0.912\paperwidth},\LenToUnit{0.898\paperheight}){#1}}}
+\AddToShipoutPictureFG{
+  \AtPagemyUpperLeft{{
+  % don't put the desy logo into the right corner of the title page
+  \ifnum\c@framenumber>1%
+  \includegraphics[width=1cm,keepaspectratio]{DESYlogo_white.png}
+  \fi%
+  }}
+}%
+
+\setbeamertemplate{itemize items}{\color{color2}\textbf{\textgreater}}
+
+
+% Title page definition and layout
+
+\addtobeamertemplate{title page}{%
+\begin{tikzpicture}[overlay, remember picture]
+% background image (needs to be inserted first!!!)
+\node[opacity=.2, at=(current page.center)] {\includegraphics
+[width=1.0\paperwidth, keepaspectratio]{images/cms_artist.png}};
+% logos to be displayed on the titel page
+\node[xshift=3.5cm, yshift=-8cm] at (current page.north west) {
+	\includegraphics[width=0.6\textwidth]{rwth_3physik_b_englisch_rgb.png}};
+\node[xshift=11cm, yshift=-8cm] at (current page.north west) {
+	\includegraphics[width=0.25\textwidth]{DESYlogo_blau.png}};
+\end{tikzpicture}
+}{}
+
+
+
+
+% \title{\color{color0}\huge{Update on \\ a search for light NMSSM Higgs bosons \\ in $\mathrm{H(125)}\rightarrow  \upphi_1\upphi_1 \rightarrow 4\uptau$ decays \\ at $\sqrt{s}$=13TeV}}
+% \author{\color{color1}Dominik Wolfschläger, Alexei Raspereza}
+% \vspace*{-.7cm}
+% \date{\today}
+% \titlegraphic{
+% \begin{tikzpicture}[overlay, remember picture]
+% \node[xshift=3.5cm, yshift=-8cm] at (current page.north west) {
+% 	\includegraphics[width=0.6\textwidth]{rwth_3physik_b_englisch_rgb.png}};
+% \node[xshift=11cm, yshift=-8cm] at (current page.north west) {
+% 	\includegraphics[width=0.25\textwidth]{DESYlogo_blau.png}};
+% \end{tikzpicture}
+% }

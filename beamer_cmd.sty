@@ -1,0 +1,172 @@
+\ProvidesPackage{beamer_cmd}
+
+
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+
+\usepackage{amsmath}
+\usepackage{appendixnumberbeamer}
+\usepackage{booktabs}
+\usepackage[export]{adjustbox}
+
+\usepackage{comment}
+\usepackage{graphicx, tabularx}
+\usepackage{epstopdf} % this package has to be loaded after graphicx
+\usepackage{hyperref}
+\usepackage{marvosym}
+\usepackage{mathtools}
+\usepackage{multirow, bigdelim}
+\usepackage{multicol}
+\usepackage{pifont}
+\usepackage{rotating}
+\usepackage{setspace}
+\usepackage{subfigure}
+\usepackage{mdframed}
+\usepackage{url}
+\usepackage{verbatim}
+\usepackage{wrapfig}
+\usepackage{xspace}
+\usepackage{upgreek}
+%\usepackage{enumitem}
+\usepackage{feynmf}
+\usepackage{eso-pic}
+\usepackage{siunitx}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usepackage{caption}
+\usepackage{color}
+\usepackage{empheq}
+\captionsetup[figure]{labelformat=empty}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg,.jpeg}
+
+\usepackage{natbib}
+\usepackage{bibentry}
+\bibliographystyle{apalike}
+\usepackage{chngcntr}
+\usepackage{subfigure}
+
+\mode<presentation> {
+
+\usetheme{Madrid}
+%\usecolortheme{}
+\setbeamercolor{structure}{fg=color1}
+\setbeamercolor*{title}{fg=color1}
+\setbeamertemplate{title page}[default][shadow=False]
+\setbeamertemplate{footline}[frame number]{}
+\setbeamertemplate{headline}{}
+\setbeamertemplate{navigation symbols}{} % To remove the navigation symbols from the bottom of all slides uncomment this line
+
+}
+
+
+\tikzstyle{block}=[
+	draw, fill=color2, text width=8em, text centered, minimum height=2em,
+	rounded corners, scale=0.7
+	]
+
+\tikzstyle{blob}=[
+	circle, draw, fill=dayskyblue, text centered, minimum size=2cm,
+	scale=0.7
+]
+
+\tikzstyle{every picture}+=[remember picture]
+
+% * * * * * * * * * * new commands * * * * * * * * * * * * * *
+
+% \newenvironment{varblock}[1]
+% 	{
+% 	\setbeamercolor{block title}{bg=color, fg=white}
+% 	\setbeamercolor{block body}{bg=rwthtuerkis!10, fg=black}
+% 	\begin{block}{#1}
+% 	}
+% 	{\end{block}}
+
+
+
+\newcommand{\highlight}[1]{\textbf{\color{color2} #1}}
+
+\newcommand{\vvec}[3]{\begin{pmatrix} #1 \\ #2 \\ #3 \end{pmatrix}} %3er Spaltenvektor
+\newcommand{\vecbe}[1]{\vec{\hat e}_{#1}} %EInheitsrichtungsvektor
+\newcommand{\tdvec}[2]{\begin{pmatrix} #1 \\ #2 \end{pmatrix} }
+\newcommand{\nullvec}{\boldsymbol{\it 0}}
+%Kugelkoordinaten
+\newcommand{\ephi}{\vecbe{\phi}} %Einheitsrichtungsvektor in \phi Richtung
+\newcommand{\etheta}{\vecbe{\theta}} %Einheitsrichtungsvektor in \theta Richtung
+
+\newcommand{\li}{\left(} %linke Klammer (
+\newcommand{\re}{\right)}%recht Klammer )
+\newcommand{\poi}[1]{\left\{ #1 \right\}} %geschwungene Klammern { }
+\newcommand{\bra}[1]{\left< #1 \right|} %angled < >
+\newcommand{\ket}[1]{\left| #1 \right>}
+\newcommand{\braket}[2]{ \left< #1 \right|\hspace*{-3.5pt}\left.#2 \right>} %Skalarprodukt im Hilbertraum
+
+%Differentiale
+\newcommand{\pdiff}[2]{\frac{\partial #1}{\partial #2}} %partielle Ableitung
+\newcommand{\diff}[2]{\frac{\mathrm d #1}{\mathrm d #2}} %totale Ableitung
+\newcommand{\pdiffc}[3]{\left( \frac{\partial #1}{\partial #2} \right)_{#3}}
+
+%Mathematische Symbole
+\newcommand{\meq}{\overset{!}{=}}
+\newcommand{\di}{\mathrm d} %aufrechtes "d" für Differentiale
+\newcommand{\origo}[1]{\mathcal O \left( #1 \right)} %"Terme der Ordnung...
+\newcommand{\reell}{\mathbb R} %Zeichen für den reellen Zahlenraum
+\newcommand{\Kern}{\mathrm{Kern} \, }
+\newcommand{\abs}[1]{\left| #1 \right| } %Betrag
+\newcommand{\vecnorm}[1]{\left| \left| #1 \right| \right| } %Vektornorm
+\newcommand{\matb}[1]{\mathbf #1} %Fettdruck im Mathematikmodus
+\newcommand{\uuline}[1]{\underline{\underline{ #1}}} %Doppelt Underlined für Matrizen
+\newcommand{\im}{\mathrm i} %für imaginäre Zahl
+\newcommand{\expe}{\mathrm e} %Eulerzahl
+\newcommand{\unit}[1]{\, \text{\normalfont #1} } %Aufrecht für Einheiten
+\newcommand{\unitb}[1]{\, \mathbf{#1} } %Fett gedruckte Einheiten
+\newcommand{\pow}[1]{\cdot 10^{#1} }
+\renewcommand{\\}{\bigskip \newline}
+\newcommand{\degree}{^{\circ}}
+
+%Sonstiges
+\newcommand{\tab}{\hspace*{0.5cm}}
+\newcommand{\ttab}{\hspace*{1.0cm}}
+\newcommand{\cit}[1]{\glqq #1\grqq{}}
+\newcommand{\Tr}{\mathrm{Tr}\ }
+\newcommand{\Lagr}{\mathcal{L}}
+
+%Particle Physics
+\newcommand{\pt}{p_{\mathrm{T}}}
+
+
+\newlength\mytemplen
+\newsavebox\mytempbox
+
+\makeatletter
+\newcommand\mybluebox{%
+    \@ifnextchar[%]
+       {\@mybluebox}%
+       {\@mybluebox[0pt]}}
+
+\def\@mybluebox[#1]{%
+    \@ifnextchar[%]
+       {\@@mybluebox[#1]}%
+       {\@@mybluebox[#1][0pt]}}
+
+\def\@@mybluebox[#1][#2]#3{
+    \sbox\mytempbox{#3}%
+    \mytemplen\ht\mytempbox
+    \advance\mytemplen #1\relax
+    \ht\mytempbox\mytemplen
+    \mytemplen\dp\mytempbox
+    \advance\mytemplen #2\relax
+    \dp\mytempbox\mytemplen
+    \colorbox{color1}{\hspace{1em}\usebox{\mytempbox}\hspace{1em}}}
+\def\beamer@andinst{\\[0.1em]}
+\makeatother
+
+\definecolor{rwthrot}{RGB}{204,7,30}
+
+\global\mdfdefinestyle{redframe}{%
+linecolor=rwthrot,linewidth=0.3pt,%
+leftmargin=0.cm,rightmargin=0.cm,innerbottommargin=1pt, innerrightmargin=0.1cm
+}
+
+\global\mdfdefinestyle{blueexampleframe}{%
+linecolor=color1,linewidth=1.5pt ,innerleftmargin=0.5cm, innerrightmargin=0.5cm
+}
