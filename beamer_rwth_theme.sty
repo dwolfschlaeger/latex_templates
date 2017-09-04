@@ -40,7 +40,7 @@
   \AtPagemyUpperLeft{{
   % don't put the desy logo into the right corner of the title page
   \ifnum\c@framenumber>1%
-  \includegraphics[width=1cm,keepaspectratio]{rwth_3physik_b_englisch_rgb.png}
+  \includegraphics[width=1cm,keepaspectratio]{logos/rwth_3physik_b_englisch_rgb.png}
   \fi%
   }}
 }%
@@ -54,11 +54,11 @@
 \begin{tikzpicture}[overlay, remember picture]
 % background image (needs to be inserted first!!!)
 \node[opacity=.2, at=(current page.center)] {\includegraphics
-[width=1.0\paperwidth, keepaspectratio]{images/cms_artist.png}};
+[width=1.0\paperwidth, keepaspectratio]{logos/cms_artist.png}};
 % logos to be displayed on the titel page
 \node[xshift=3.5cm, yshift=-8cm] at (current page.north west) {
-	\includegraphics[width=0.6\textwidth]{rwth_3physik_b_englisch_rgb.png}};
+	\includegraphics[width=0.6\textwidth]{logos/rwth_3physik_b_englisch_rgb.png}};
 \node[xshift=11cm, yshift=-8cm] at (current page.north west) {
-	\includegraphics[width=0.25\textwidth]{DESYlogo_blau.png}};
+	\includegraphics[width=0.25\textwidth]{logos/DESYlogo_blau.png}};
 \end{tikzpicture}
 }{}
