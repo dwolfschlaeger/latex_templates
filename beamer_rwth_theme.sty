@@ -35,20 +35,18 @@
 % \definecolor{rwthlila}{RGB}{122,111,172}
 
 \newcommand\AtPagemyUpperLeft[1]{\AtPageLowerLeft{%
-\put(\LenToUnit{0.912\paperwidth},\LenToUnit{0.898\paperheight}){#1}}}
+\put(\LenToUnit{0.007\paperwidth},\LenToUnit{0.01\paperheight}){#1}}}
 \AddToShipoutPictureFG{
   \AtPagemyUpperLeft{{
   % don't put the desy logo into the right corner of the title page
   \ifnum\c@framenumber>1%
-  \includegraphics[width=1cm,keepaspectratio]{logos/rwth_3physik_b_englisch_rgb.png}
+  \includegraphics[width=4cm,keepaspectratio]{logos/rwth_3physik_b_englisch_rgb.png}
   \fi%
   }}
 }%
 
-\setbeamerfont{institute}{size=\large}
-\setbeamerfont{auther}{size=\large}
-
 % Title page definition and layout
+
 
 \addtobeamertemplate{title page}{%
 \begin{tikzpicture}[overlay, remember picture]
@@ -56,9 +54,9 @@
 \node[opacity=.2, at=(current page.center)] {\includegraphics
 [width=1.0\paperwidth, keepaspectratio]{logos/cms_artist.png}};
 % logos to be displayed on the titel page
-\node[xshift=3.5cm, yshift=-8cm] at (current page.north west) {
+\node[xshift=3.5cm, yshift=-8.5cm] at (current page.north west) {
 	\includegraphics[width=0.6\textwidth]{logos/rwth_3physik_b_englisch_rgb.png}};
 \node[xshift=11cm, yshift=-8cm] at (current page.north west) {
-	\includegraphics[width=0.25\textwidth]{logos/DESYlogo_blau.png}};
+	\includegraphics[width=0.25\textwidth]{logos/CMSlogo_color_label_1024_May2014.png}};
 \end{tikzpicture}
 }{}
