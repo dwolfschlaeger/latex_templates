@@ -137,6 +137,12 @@
 \renewcommand{\\}{\newline \noindent} 
 \newcommand{\degree}{^{\circ}}
 
+%Particle physics
+\newcommand{\pt}{p_{\mathrm{T}}}
+\newcommand{\tauh}{\tau_{\mathrm{h}}}
+\newcommand{\taumu}{\tau_{\upmu}}
+\newcommand{\taue}{\tau_{\mathrm{e}}}
+
 %Sonstiges
 \newcommand{\tab}{\hspace*{0.5cm}}
 \newcommand{\ttab}{\hspace*{1.0cm}}
@@ -146,4 +152,6 @@
 	\nocite{*}
 	\bibliography{#1}
 	\bibliographystyle{natdin}
+	
+
 }
