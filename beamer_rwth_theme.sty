@@ -38,11 +38,11 @@
 
 
 \newcommand\AtPagemyUpperLeft[1]{\AtPageLowerLeft{%
-\put(\LenToUnit{0.007\paperwidth},\LenToUnit{0.01\paperheight}){#1}}}
+\put(\LenToUnit{0.000\paperwidth},\LenToUnit{0.\paperheight}){#1}}}
 \AddToShipoutPictureFG{
   \AtPagemyUpperLeft{{
   % don't put the desy logo into the right corner of the title page
-  \ifnum\c@framenumber>1%
+  \ifnum\c@framenumber>0%
   \includegraphics[width=4cm,keepaspectratio]{logos/rwth_3physik_b_englisch_rgb.png}
   \fi%
   }}
