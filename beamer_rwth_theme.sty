@@ -38,7 +38,7 @@
 
 
 \newcommand\AtPagemyUpperLeft[1]{\AtPageLowerLeft{%
-\put(\LenToUnit{0.000\paperwidth},\LenToUnit{0.\paperheight}){#1}}}
+\put(\LenToUnit{-0.02\paperwidth},\LenToUnit{-0.021\paperheight}){#1}}}
 \AddToShipoutPictureFG{
   \AtPagemyUpperLeft{{
   % don't put the desy logo into the right corner of the title page
@@ -47,6 +47,14 @@
   \fi%
   }}
 }%
+
+% \setbeamertemplate{footline}{%
+%        \includegraphics[width=4cm,keepaspectratio]{logos/rwth_3physik_b_englisch_rgb.png}%
+%        \hfill%
+%        \usebeamercolor[fg]{page number in head/foot}%
+%        \usebeamerfont{page number in head/foot}%
+%        \insertframenumber\,/\,\inserttotalframenumber\kern0.5em%
+% }
 
 % Title page definition and layout
 
