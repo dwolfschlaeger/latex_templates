@@ -2,6 +2,13 @@
 
 \usepackage{beamer_cmd}
 \usepackage{tipa}
+\usepackage{fontspec}
+\setmainfont{FiraCode-Retina.otf}[
+Path = /Users/dominik/Library/texmf/fonts/Fira/,
+BoldFont = FiraCode-Bold.otf,
+ItalicFont = FiraCode-Light.otf,
+BoldItalicFont  = FiraCode-Bold.otf]
+
 %-------------------------- style definition -------------------------------------
 
 \definecolor{color0}{RGB}{0,0,0} % Black 
@@ -36,7 +43,6 @@
 
 \setbeamertemplate{itemize items}{\color{color2}\textbf{\textgreater}}
 
-
 \newcommand\AtPagemyUpperLeft[1]{\AtPageLowerLeft{%
 \put(\LenToUnit{-0.02\paperwidth},\LenToUnit{-0.021\paperheight}){#1}}}
 \AddToShipoutPictureFG{
@@ -48,13 +54,6 @@
   }}
 }%
 
-% \setbeamertemplate{footline}{%
-%        \includegraphics[width=4cm,keepaspectratio]{logos/rwth_3physik_b_englisch_rgb.png}%
-%        \hfill%
-%        \usebeamercolor[fg]{page number in head/foot}%
-%        \usebeamerfont{page number in head/foot}%
-%        \insertframenumber\,/\,\inserttotalframenumber\kern0.5em%
-% }
 
 % Title page definition and layout
 
