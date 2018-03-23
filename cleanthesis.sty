@@ -223,7 +223,7 @@
 %	{%
 		% Using sans-serif fonts
 		%
-		%\RequirePackage{helvet}	% Font:	Helvetica
+		\RequirePackage{helvet}	% Font:	Helvetica
 		%\RequirePackage{nimbus}	% Font:	Nimbus Sans, a clone of the Helvetica
 		%\RequirePackage{tgheros}	% Font:	TEX Gyre Heros
 		%\RequirePackage{libertine}	% Font:	Biolinum, the standard sans serif typeface with the Libertine package
@@ -251,7 +251,13 @@
 \RequirePackage{blindtext}		% package for blind text
 \RequirePackage{textcomp}			% different symbols
 \RequirePackage{hyperref} 			% interactive link inside the document
-
+\RequirePackage{booktabs, tabularx}
+\RequirePackage[export]{adjustbox}
+\RequirePackage[justification=centering]{caption}
+\RequirePackage{wrapfig}
+\RequirePackage{multirow}
+\RequirePackage{pdfpages}
+\RequirePackage{enumitem}
 %
 \RequirePackage[					% modify figure and table captions
 	font={small}, 					% 	- small font size
@@ -269,14 +275,14 @@
 %
 \RequirePackage[					% page layout modifications
 	paper=a4paper,					% 	- use A4 paper size
-	%scale={0.86,0.94},				% 	- total body size (h,v)
+	scale={0.86,0.94},				% 	- total body size (h,v)
 	%scale={0.86,0.94},				% 	- total body size (h,v)
 	nohead,							% 	- no header
 	includefoot,					% 	- include footer space
 	includemp,						% 	- include side note space
 	bindingoffset=0.0cm,			% 	- binding correction
 	top=2.25cm,						% 	- total body: top margin
-	left=0.0cm,					% 	- total body: left margin (odd pages)
+	left=2.5cm,					% 	- total body: left margin (odd pages)
 	right=0.0cm,					% 	- total body: right margin (odd pages)
 	bottom=1.5cm,					% 	- total body: bottom margin
 	marginparwidth=1.75cm,			% 	- width for side note
