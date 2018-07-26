@@ -29,7 +29,7 @@
 %
 % **************************************************
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{cleanthesis}[2015/08/26 v0.3.1 Clean-looking thesis style inspired by Apple's user guide documents]
+\ProvidesPackage{cleanthesis}[2018/07/24 From Clean-looking thesis style inspired by Apple's user guide documents]
 %
 % **************************************************
 % Package options
@@ -62,6 +62,11 @@
 \define@boolkey[ct]{cthesis}{hangsubsection}[true]{}
 \setkeys[ct]{cthesis}{hangsubsection=true}
 
+% OPTION hangsubsubsection
+% --> values = true|false
+\define@boolkey[ct]{cthesis}{hangsubsubsection}[true]{}
+\setkeys[ct]{cthesis}{hangsubsubsection=true}
+
 % OPTION figuresep
 % --> values = none|colon|period|space|quad|endash
 \define@choicekey*[ct]{cthesis}{figuresep}{none,colon,period,space,quad,newline,endash}[endash]{\def\cthesis@figuresep{#1}}
@@ -74,7 +79,7 @@
 
 % OPTION colortheme
 % --> values = bluemagenta|bluegreen
-\define@choicekey*[ct]{cthesis}{colortheme}[\val\themenr]{bluemagenta,bluegreen,desy}[bluemagenta]{\def\cthesis@colortheme{\themenr}}
+\define@choicekey*[ct]{cthesis}{colortheme}[\val\themenr]{bluemagenta,bluegreen,desy,bonbon}[bluemagenta]{\def\cthesis@colortheme{\themenr}}
 \setkeys[ct]{cthesis}{colortheme=bluemagenta}
 
 % OPTION bibsys
@@ -91,6 +96,11 @@
 % --> values = alphabetic|numeric|authoryear
 \define@choicekey*[ct]{cthesis}{bibstyle}[\val\bibstylenr]{alphabetic,numeric,authoryear}[alphabetic]{\def\cthesis@bibstyle{#1}}
 \setkeys[ct]{cthesis}{bibstyle=numeric}
+
+% OPTION wrapfooter
+% --> values = true|false
+\define@boolkey[ct]{cthesis}{wrapfooter}[false]{}
+\setkeys[ct]{cthesis}{wrapfooter=false}
 
 
 \DeclareOptionX*{
@@ -134,6 +144,7 @@
 	\colorlet{ctcolorchapterline}{ctcolormain}
 	\colorlet{ctcolorsection}{ctcolormain}
 	\colorlet{ctcolorsubsection}{ctcolormain}
+	\colorlet{ctcolorsubsubsection}{ctcolormain}
 	\colorlet{ctcolorparagraph}{ctcolorblack}
 	% --> text colors
 	\colorlet{ctcolorfloatlabel}{ctcoloraccessory}
@@ -149,6 +160,7 @@
 		\colorlet{ctcolorfootertitle}{RWTHblue}
 		% --> sectioning colors
 		\colorlet{ctcolorsubsection}{ctcolorblack}
+		\colorlet{ctcolorsubsubsection}{ctcolorblack}
 		\colorlet{ctcolorpartnum}{ctcolorblack}
 		% --> text colors
 		\colorlet{ctcolorlistlabel}{ctcolorblack}
@@ -164,6 +176,7 @@
 		\colorlet{ctcolorchapterline}{ctcolorblack}
 		\colorlet{ctcolorsection}{ctcolormain}
 		\colorlet{ctcolorsubsection}{ctcolormain}
+		\colorlet{ctcolorsubsubsection}{ctcolormain}
 		% --> text colors
 		\colorlet{ctcolorfloatlabel}{ctcolorblack}
 		\colorlet{ctcolorlistlabel}{ctcolorblack}
@@ -188,6 +201,11 @@
 	\cthesissetcolor{cmyk}{.61, .47, .03, 0}{.48, .05, .91, 0}%
 }
 
+% sets the blue-green color theme (blue/green)
+\def\cthesissetcolorbonbon{%
+	\cthesissetcolor{cmyk}{.99, .33, 0, .13}{0, .36, .80, .1}%
+}
+
 \def\cthesissetcolordesy{%
 	\cthesissetcolor{RGB}{1,165,236}{232,151,0}%
 }
@@ -208,6 +226,11 @@
 \or
 	% case 2 (colortheme == bluegreen)
 	\cthesissetcolordesy
+	
+\or
+	% case 3 (colortheme == bonbon)
+	\cthesissetcolorbonbon
+		
 \else
 	% all other cases
 	\cthesissetcolorbluemagenta
@@ -225,16 +248,21 @@
 		%
 		% \RequirePackage{helvet}	% Font:	Helvetica
 		%\RequirePackage{nimbus}	% Font:	Nimbus Sans, a clone of the Helvetica
-		%\RequirePackage{tgheros}	% Font:	TEX Gyre Heros
+		\RequirePackage{tgheros}	% Font:	TEX Gyre Heros
 		%\RequirePackage{libertine}	% Font:	Biolinum, the standard sans serif typeface with the Libertine package
 		%\RequirePackage[scaled]{berasans} % Font:	Bera Sans, a a version of Bitstream Vera Sans slightly enhanced
 		\renewcommand*\familydefault{\sfdefault}%
+		
 %	}{%
 \else
 		% Using serif fonts
 		%
 		% \RequirePackage{lmodern}	% font set: Latin Modern
 		% \RequirePackage{charter}	% font set: Charter
+		\RequirePackage[sfdefault]{ClearSans}
+		\renewcommand*\familydefault{\sfdefault}%
+
+		
 		%\RequirePackage{fourier}	% font set: (basically improved utopia)
 %	}
 \fi
@@ -275,15 +303,15 @@
 %
 \RequirePackage[					% page layout modifications
 	paper=a4paper,					% 	- use A4 paper size
-	scale={0.86,0.94},				% 	- total body size (h,v)
+	% scale={0.86,0.94},				% 	- total body size (h,v)
 	%scale={0.86,0.94},				% 	- total body size (h,v)
 	nohead,							% 	- no header
 	includefoot,					% 	- include footer space
 	includemp,						% 	- include side note space
 	bindingoffset=0.0cm,			% 	- binding correction
 	top=2.25cm,						% 	- total body: top margin
-	left=2.5cm,					% 	- total body: left margin (odd pages)
-	right=0.0cm,					% 	- total body: right margin (odd pages)
+	left=3.75cm,					% 	- total body: left margin (odd pages)
+	right=0.75cm,					% 	- total body: right margin (odd pages)
 	bottom=1.5cm,					% 	- total body: bottom margin
 	marginparwidth=1.75cm,			% 	- width for side note
 	marginparsep=10pt,				% 	- space between notes and body text (content)
@@ -306,7 +334,7 @@
 	url=false,						% 	- don't show url tags
 	doi=false,						% 	- don't show doi tags
 	urldate=long,					% 	- display type for dates
-	maxnames=2,%
+	maxnames=3,%
 	minnames=1,%
 	maxbibnames=5,%
 	minbibnames=3,%
@@ -322,7 +350,7 @@
 % **************************************************
 % Text Format
 % **************************************************
-\setstretch{1.}					% value for line spacing, use \setstretch{} or \singlespacing or \onehalfspacing or \doublespacing
+\setstretch{1.1}					% value for line spacing, use \setstretch{} or \singlespacing or \onehalfspacing or \doublespacing
 \setlength{\parindent}{0em}			% value for paragraph indentation
 \clubpenalty = 10000				% prevent single lines at the beginning of a paragraph (Schusterjungen)
 \widowpenalty = 10000				% prevent single lines at the end of a paragraph (Hurenkinder)
@@ -348,7 +376,7 @@
 	{\end{itemize}}%
 
 \newenvironment{ct_version_list}
-	{\begin{itemize}[topsep=-5pt,partopsep=0pt,parsep=2pt,itemsep=3pt]}
+	{\begin{itemize}[topsep=-5pt,partopsep=0pt,parsep=1pt,itemsep=1pt]}
 	{\end{itemize}}%
 
 	\newenvironment{ct_version_list_sub}
@@ -378,9 +406,14 @@
 \renewcommand{\chaptermark}[1]{%
 	\markboth{%
 		\footnotesize%
-		{\color{ctcolorfootermark}\textbf{\chaptername\ \thechapter}}%
+		% use \@chapapp instead of \chaptername to avoid 'Chapter A Appendix ...', thanks to @farbverlust (issue #47)
+		{\color{ctcolorfootermark}\textbf{\@chapapp\ \thechapter}}%
 		\quad%
-		{{\color{ctcolormain}#1}}%
+		\ifct@cthesis@wrapfooter%
+			{\color{ctcolorfootertitle}\protect\parbox[t]{.7\textwidth}{#1}}%
+		\else%
+			{\color{ctcolorfootertitle}#1}%
+		\fi%
 	}{}%
 }
 \renewcommand{\sectionmark}[1]{%
@@ -388,7 +421,11 @@
 		\footnotesize%
 		{\color{ctcolorfootermark}\textbf{\thesection}}%
 		\quad%
-		{\color{ctcolormain}#1}%
+		\ifct@cthesis@wrapfooter%
+			{\color{ctcolorfootertitle}\protect\parbox[t]{.7\textwidth}{#1}}%
+		\else%
+			{\color{ctcolorfootertitle}#1}%
+		\fi%
 	}%
 }
 %
@@ -518,44 +555,44 @@
 	arg1=#1, arg2=#2, arg3=#3%
 }
 
-\RequirePackage{fontspec}
+% \RequirePackage{fontspec}
 
-\fontspec{segoe}[
-    Extension={.ttf},
-	UprightFont = *uil,
-    BoldFont = *uib,
-    ItalicFont = *-ui-635
- ]
+% \fontspec{segoe}[
+%     Extension={.ttf},
+% 	UprightFont = *uil,
+%     BoldFont = *uib,
+%     ItalicFont = *-ui-635
+%  ]
+% \newfontfamily{\Segoe}{Segoe Script}
 
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{3}
 
-
-
+% own font definitions
 \newcommand{\helv}{\fontfamily{phv}\fontsize{9}{11}\selectfont}
 \newcommand{\book}{\fontfamily{pbk}\fontseries{m}\fontsize{11}{13}\selectfont}
-\newcommand{\tgherosfont}{\fontfamily{qhv}\selectfont}
-\newcommand{\segoefont}{\fontfamily{segueui}\selectfont}
+\newcommand{\tgherosfont}{\bfseries\normalfont}
 
 \newcommand{\thesispartlabelfont}{\color{ctcolorpartnum}\book\fontsize{60}{60}\selectfont}
-\newcommand{\thesispartfont}{\color{ctcolorparttext}\huge \tgherosfont\selectfont}
-\newcommand{\thesischapterfont}{\color{ctcolorblack}\huge \fontfamily{phv}\selectfont}
-\newcommand{\thesissectionfont}{\color{ctcolormain}\LARGE \tgherosfont}
-\newcommand{\thesissubsectionfont}{\color{ctcolormain} \tgherosfont\bfseries}
-\newcommand{\thesissubsubsectionfont}{\color{ctcolormain} \tgherosfont \bfseries}
-\newcommand{\thesissubsubsubsectionfont}{\color{ctcolormain} \tgherosfont \bfseries}
-\newcommand{\thesisparagraphfont}{\color{ctcolormain}\tgherosfont\small\bfseries}
+\newcommand{\thesispartfont}{\color{ctcolorparttext}\Huge \tgherosfont\selectfont}
+\newcommand{\thesischapterfont}{\color{ctcolorblack}\huge\tgherosfont}
+%\newcommand{\thesissectionfont}{\color{ctcolormain}\LARGE\bfseries \tgherosfont}
+\newcommand{\thesissectionfont}{\color{ctcolorsection}\LARGE \tgherosfont}
+\newcommand{\thesissubsectionfont}{\color{ctcolorsubsection}\Large \tgherosfont}
+\newcommand{\thesissubsubsectionfont}{\color{ctcolorsubsubsection} \tgherosfont}
+\newcommand{\thesisparagraphfont}{\color{ctcolorparagraph}\tgherosfont\small\bfseries}
 %
 % headings
 \setkomafont{part}{\thesispartfont} % for chapter entries
 \setkomafont{chapter}{\thesischapterfont} % for chapter entries
-\setkomafont{section}{\thesissubsectionfont} % for section entries
+\setkomafont{section}{\thesissectionfont} % for section entries
 \setkomafont{subsection}{\thesissubsectionfont} % for section entries
-\addtokomafont{subsubsection}{\thesissubsubsectionfont}
-% \addtokomafont{subsubsubsection}{\thesissubsubsubsectionfont}
+\setkomafont{subsubsection}{\thesissubsubsectionfont} % for section entries
+\addtokomafont{subsubsection}{\tgherosfont}
 %\addtokomafont{paragraph}{\tgherosfont}
 \setkomafont{paragraph}{\thesisparagraphfont}
 
 %\setkomafont{subsection}{\large} % for subsection entries
-
 
 
 %
@@ -614,13 +651,13 @@
 	[\phantomsection]
 %
 % > formats: \section
-\titlespacing{\section}{0em}{.75em}{.2em}%[0pt]
+\titlespacing{\section}{0em}{0em}{.2em}%[0pt]
 %\ifthenelse{\boolean{@sectionlabeloutside}}%
 \ifct@cthesis@hangsection
 %	{%
 		\titleformat{\section}[hang]%
 			{\usekomafont{section}}%
-			{\color{RWTHblue}\thesection\hspace*{10pt}}%
+			{\thesection\hspace*{10pt}}%
 			{0pt}%
 			{\raggedright}%
 			[\phantomsection]
@@ -628,7 +665,7 @@
 \else
 		\titleformat{\section}[block]%
 			{\usekomafont{section}}%
-			{\color{RWTHblue}\thesection\hspace*{10pt}}%
+			{\thesection\hspace*{10pt}}%
 			{0pt}%
 			{\raggedright}%
 			[\phantomsection]
@@ -651,6 +688,28 @@
 		\titleformat{\subsection}[block]%
 			{\usekomafont{subsection}}%
 			{\thesubsection\hspace*{10pt}}%
+			{0pt}%
+			{\raggedright}%
+			[\phantomsection]
+%	}
+\fi
+%
+% > formats: \subsubsection
+\titlespacing{\subsubsection}{0em}{.5em}{0em}%[0pt]
+%\ifthenelse{\boolean{@subsubsectionlabeloutside}}%
+\ifct@cthesis@hangsubsection
+%	{%
+		\titleformat{\subsubsection}[hang]%
+			{\usekomafont{subsubsection}}%
+			{\thesubsubsection\hspace*{10pt}}%
+			{0pt}%
+			{\raggedright}%
+			[\phantomsection]
+%	}{%
+\else
+		\titleformat{\subsubsection}[block]%
+			{\usekomafont{subsubsection}}%
+			{\thesubsubsection\hspace*{10pt}}%
 			{0pt}%
 			{\raggedright}%
 			[\phantomsection]
