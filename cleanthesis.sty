@@ -292,15 +292,16 @@
 	font={small}, 					% 	- small font size
 	labelfont={bf,sf,color=ctcoloraccessory},% 	- label in bold, sans-serif and magenta
 	labelsep=\cthesis@figuresep,				% 	- separator: none, colon, period, space, quad, newline, endash
-	singlelinecheck=false			% 	- no centered single-lined captions
-]{caption}[2008/08/24]
+	singlelinecheck=false	% 	- no centered single-lined captions	
+]{caption}
+\captionsetup{format=hang, justification=raggedright}
 %\ifthenelse{\boolean{@figurecaptionoutside}}%
-\ifct@cthesis@hangfigurecaption
-%	{%
-		\DeclareCaptionFormat{llap}{\llap{#1#2}#3\par}%
-		\captionsetup{format=llap,labelsep=quad,singlelinecheck=false}%
-%	}{}
-\fi
+% \ifct@cthesis@hangfigurecaption
+% %	{%
+% 		\DeclareCaptionFormat{llap}{\llap{#1#2}#3\par}%
+% 		\captionsetup{format=llap,labelsep=quad,singlelinecheck=false}%
+% %	}{}
+% \fi
 %
 \RequirePackage[					% page layout modifications
 	paper=a4paper,					% 	- use A4 paper size
@@ -580,7 +581,7 @@
 %\newcommand{\thesissectionfont}{\color{ctcolormain}\LARGE\bfseries \tgherosfont}
 \newcommand{\thesissectionfont}{\color{ctcolorsection}\LARGE \tgherosfont}
 \newcommand{\thesissubsectionfont}{\color{ctcolorsubsection}\Large \tgherosfont}
-\newcommand{\thesissubsubsectionfont}{\color{ctcolorsubsubsection} \tgherosfont}
+\newcommand{\thesissubsubsectionfont}{\color{ctcolorsubsubsection} \large \tgherosfont}
 \newcommand{\thesisparagraphfont}{\color{ctcolorparagraph}\tgherosfont\small\bfseries}
 %
 % headings
