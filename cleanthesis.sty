@@ -119,10 +119,6 @@
 %
 % The xcolor package enables us to create/handle/name different colors
 \RequirePackage[dvipsnames]{xcolor}
-\definecolor{RWTHblue}{RGB}{0.0,83,159}
-\definecolor{RWTHmagenta}{RGB}{227,0,102}
-\definecolor{RWTHbordeaux}{RGB}{161,16,53}
-\definecolor{RWTHlightblue}{RGB}{142,186,226}
 \definecolor{color0}{RGB}{255,255,255} % Black 
 \definecolor{color1}{RGB}{1,165,236} % DESY blue
 \definecolor{color2}{RGB}{232,151,0} % DESY orange
@@ -134,7 +130,7 @@
 	\colorlet{ctcolorfooterpage}{ctcolorblack}
 	\colorlet{ctcolorfooterline}{ctcolormain}
 	\colorlet{ctcolorfootermark}{ctcolorblack}
-	\colorlet{ctcolorfootertitle}{ctcolormain}
+	\colorlet{ctcolorfootertitle}{ctcolorblack}
 	% -- sectioning colors
 	\colorlet{ctcolortitle}{ctcolormain}
 	\colorlet{ctcolorpartnum}{ctcolormain}
@@ -203,7 +199,7 @@
 
 % sets the blue-green color theme (blue/green)
 \def\cthesissetcolorbonbon{%
-	\cthesissetcolor{HTML}{2196F3}{FF5722}%
+	\cthesissetcolor{HTML}{0395DE}{FF5722}%
 }
 
 \def\cthesissetcolordesy{%
@@ -285,6 +281,7 @@
 \RequirePackage{wrapfig}
 \RequirePackage{multirow}
 \RequirePackage{pdfpages}
+\RequirePackage{upgreek}
 \RequirePackage{enumitem}
 \RequirePackage{tikz}
 %
@@ -514,7 +511,7 @@
 \newcommand*{\frefadd}[2]{(see fig.~\ref{#1}~#2)}
 %
 % RESULT = (siehe Abb. 10.4, Seite 12)
-\newcommand*{\figref}[1]{(see fig..~\ref{#1}, Seite~\pageref{#1})}
+\newcommand*{\figref}[1]{(see fig.~\ref{#1}, Seite~\pageref{#1})}
 %
 % RESULT = (siehe Abb. 10.4 b, Seite 12)
 \newcommand*{\figrefadd}[2]{(see fig.~\ref{#1}~#2, Seite~\pageref{#1})}
