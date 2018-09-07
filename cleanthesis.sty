@@ -488,7 +488,10 @@
 \newcommand{\tabref}[1]{(see tab.~\ref{#1})}
 %
 % RESULT = (siehe Tab. 12.4)
-\newcommand{\tableref}[1]{(see tab.~\ref{#1} Seite~\pageref{#1})}
+\newcommand{\tableref}[1]{(see tab.~\ref{#1} page~\pageref{#1})}
+%
+% RESULT = Abbildung 10.4
+\newcommand*{\tabreft}[1]{table~\ref{#1}}
 %
 % --------------------------------------------------
 % RESULT = (siehe 3.4)
@@ -505,22 +508,22 @@
 %
 % --------------------------------------------------
 % RESULT = (siehe Abb. 10.4)
-\newcommand*{\fref}[1]{(see fig..~\ref{#1})}
+\newcommand*{\fref}[1]{(see fig.~\ref{#1})}
 %
 % RESULT = (siehe Abb. 10.4 b)
 \newcommand*{\frefadd}[2]{(see fig.~\ref{#1}~#2)}
 %
 % RESULT = (siehe Abb. 10.4, Seite 12)
-\newcommand*{\figref}[1]{(see fig.~\ref{#1}, Seite~\pageref{#1})}
+\newcommand*{\figref}[1]{(see fig.~\ref{#1}, page~\pageref{#1})}
 %
 % RESULT = (siehe Abb. 10.4 b, Seite 12)
-\newcommand*{\figrefadd}[2]{(see fig.~\ref{#1}~#2, Seite~\pageref{#1})}
+\newcommand*{\figrefadd}[2]{(see fig.~\ref{#1}~#2, page~\pageref{#1})}
 %
 % RESULT = Abbildung 10.4
-\newcommand*{\figreft}[1]{fig~\ref{#1}}
+\newcommand*{\figreft}[1]{figure~\ref{#1}}
 %
 % RESULT = Abbildung 10.4 b
-\newcommand*{\figrefaddt}[2]{fig~\ref{#1}~#2}
+\newcommand*{\figrefaddt}[2]{figure~\ref{#1}~#2}
 %
 % --------------------------------------------------
 % RESULT = (siehe Seite 12)
