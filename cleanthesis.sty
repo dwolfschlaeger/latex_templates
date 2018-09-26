@@ -307,7 +307,7 @@
 	nohead,							% 	- no header
 	includefoot,					% 	- include footer space
 	includemp,						% 	- include side note space
-	bindingoffset=0.0cm,			% 	- binding correction
+	bindingoffset=0.5cm,			% 	- binding correction
 	top=2.25cm,						% 	- total body: top margin
 	left=2.25cm,					% 	- total body: left margin (odd pages)
 	right=0.75cm,					% 	- total body: right margin (odd pages)
@@ -500,11 +500,11 @@
 % RESULT = Abschnitt 3.4
 \newcommand{\treft}[1]{section~\ref{#1}}
 %
-% RESULT = (siehe 3.4, Seite 12)
-\newcommand{\textref}[1]{(see \ref{#1}, page~\pageref{#1})}
+% RESULT = (siehe 3.4)
+\newcommand{\textref}[1]{(see section \ref{#1})}
 %
 % RESULT = Abschnitt 3.4 (siehe Seite 12)
-\newcommand{\textreft}[1]{section~\ref{#1} (see page~\pageref{#1})}
+\newcommand{\textreft}[1]{section~\ref{#1}}
 %
 % --------------------------------------------------
 % RESULT = (siehe Abb. 10.4)
