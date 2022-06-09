@@ -78,9 +78,9 @@
 \setkeys[ct]{cthesis}{colorize=full}
 
 % OPTION colortheme
-% --> values = bluemagenta|bluegreen
-\define@choicekey*[ct]{cthesis}{colortheme}[\val\themenr]{bluemagenta,bluegreen,desy,bonbon}[bluemagenta]{\def\cthesis@colortheme{\themenr}}
-\setkeys[ct]{cthesis}{colortheme=bluemagenta}
+% --> values = bluemagenta|bluegreen|rwth
+\define@choicekey*[ct]{cthesis}{colortheme}[\val\themenr]{bluemagenta,bluegreen,rwth}[rwth]{\def\cthesis@colortheme{\themenr}}
+\setkeys[ct]{cthesis}{colortheme=rwth}
 
 % OPTION bibsys
 % --> values = biber|bibtex
@@ -119,9 +119,7 @@
 %
 % The xcolor package enables us to create/handle/name different colors
 \RequirePackage[dvipsnames]{xcolor}
-\definecolor{color0}{RGB}{255,255,255} % Black 
-\definecolor{color1}{RGB}{1,165,236} % DESY blue
-\definecolor{color2}{RGB}{232,151,0} % DESY orange
+
 % updates all colors regarding the defined main and accessory
 % color, as well as the defined colorize mode (full, reduced, bw)
 \long\def\ct@cthesis@updatecolors{%
@@ -197,13 +195,8 @@
 	\cthesissetcolor{cmyk}{.61, .47, .03, 0}{.48, .05, .91, 0}%
 }
 
-% sets the blue-green color theme (blue/green)
-\def\cthesissetcolorbonbon{%
-	\cthesissetcolor{HTML}{0395DE}{FF5722}%
-}
-
-\def\cthesissetcolordesy{%
-	\cthesissetcolor{RGB}{1,165,236}{232,151,0}%
+\def\cthesissetcolorrwth{%
+	\cthesissetcolor{cmyk}{1, .47, 0, .38}{0, .32, 1, .04}%
 }
 
 % defines general colors
@@ -218,18 +211,13 @@
 \or
 	% case 1 (colortheme == bluegreen)
 	\cthesissetcolorbluegreen
-	
 \or
-	% case 2 (colortheme == bluegreen)
-	\cthesissetcolordesy
-	
-\or
-	% case 3 (colortheme == bonbon)
-	\cthesissetcolorbonbon
+	% case 4 (colortheme == rwth)
+	\cthesissetcolorrwth
 		
 \else
 	% all other cases
-	\cthesissetcolorbluemagenta
+	\cthesissetcolorrwth
 \fi
 
 
@@ -266,13 +254,13 @@
 % **************************************************
 % Load Packages
 % **************************************************
-\RequirePackage{fixltx2e}			% packages provides fixes to LaTeX2e
+% \RequirePackage{fixltx2e}			% packages provides fixes to LaTeX2e
 \RequirePackage{microtype}			% typographic tuning
 \RequirePackage{setspace}			% for line spacing, e.g. \onehalfspacing
 \RequirePackage[]{graphicx}			% graphics import features
 \RequirePackage{fancyhdr}			% for header and footer modifications
 \RequirePackage{enumitem}			% for simple list modifications
-\RequirePackage{blindtext}		% package for blind text
+\RequirePackage{blindtext}			% package for blind text
 \RequirePackage{textcomp}			% different symbols
 \RequirePackage{hyperref} 			% interactive link inside the document
 \RequirePackage{booktabs, tabularx}
@@ -281,7 +269,12 @@
 \RequirePackage{wrapfig}
 \RequirePackage{multirow}
 \RequirePackage{pdfpages}
+\RequirePackage{euler}
 \RequirePackage{upgreek}
+\RequirePackage{rotating}
+\DeclareMathSizes{10}{11}{7}{7}   % For size 10 text
+\DeclareMathSizes{11}{12}{8}{8}      % For size 11 text
+\DeclareMathSizes{12}{13}{8}{8}     % For size 12 text
 \RequirePackage{enumitem}
 \RequirePackage{tikz}
 %
@@ -292,14 +285,7 @@
 	singlelinecheck=false	% 	- no centered single-lined captions	
 ]{caption}
 \captionsetup{format=hang, justification=raggedright}
-%\ifthenelse{\boolean{@figurecaptionoutside}}%
-% \ifct@cthesis@hangfigurecaption
-% %	{%
-% 		\DeclareCaptionFormat{llap}{\llap{#1#2}#3\par}%
-% 		\captionsetup{format=llap,labelsep=quad,singlelinecheck=false}%
-% %	}{}
-% \fi
-%
+
 \RequirePackage[					% page layout modifications
 	paper=a4paper,					% 	- use A4 paper size
 	% scale={0.86,0.94},				% 	- total body size (h,v)
@@ -350,7 +336,7 @@
 % Text Format
 % **************************************************
 \setstretch{1.1}					% value for line spacing, use \setstretch{} or \singlespacing or \onehalfspacing or \doublespacing
-\setlength{\parindent}{0em}			% value for paragraph indentation
+\setlength{\parindent}{1em}			% value for paragraph indentation
 \clubpenalty = 10000				% prevent single lines at the beginning of a paragraph (Schusterjungen)
 \widowpenalty = 10000				% prevent single lines at the end of a paragraph (Hurenkinder)
 \displaywidowpenalty = 10000		%
@@ -485,68 +471,60 @@
 % ref commands, e.g. for images, tables and text labels
 % --------------------------------------------------
 % RESULT = (siehe Tab. 12.4)
-\newcommand{\tabref}[1]{(see tab.~\ref{#1})}
+\newcommand{\tabref}[1]{(c.f. Tab.~\ref{#1})}
 %
 % RESULT = (siehe Tab. 12.4)
-\newcommand{\tableref}[1]{(see tab.~\ref{#1} page~\pageref{#1})}
+\newcommand{\tableref}[1]{(c.f. Tab.~\ref{#1} page~\pageref{#1})}
 %
 % RESULT = Abbildung 10.4
-\newcommand*{\tabreft}[1]{table~\ref{#1}}
+\newcommand*{\tabreft}[1]{Table~\ref{#1}}
 %
 % --------------------------------------------------
 % RESULT = (siehe 3.4)
 \newcommand{\tref}[1]{(see \ref{#1})}
 %
 % RESULT = Abschnitt 3.4
-\newcommand{\treft}[1]{section~\ref{#1}}
+\newcommand{\treft}[1]{Section~\ref{#1}}
 %
 % RESULT = (siehe 3.4)
-\newcommand{\textref}[1]{(see section \ref{#1})}
+\newcommand{\textref}[1]{(c.f. Section \ref{#1})}
 %
 % RESULT = Abschnitt 3.4 (siehe Seite 12)
-\newcommand{\textreft}[1]{section~\ref{#1}}
+\newcommand{\textreft}[1]{Section~\ref{#1} \seepage{#1}}
+%
+% --------------------------------------------------
+% RESULT = Chapter 3.4
+\newcommand{\cref}[1]{Chapter~\ref{#1}}
+%
+% RESULT = (siehe 3.4)
+\newcommand{\scref}[1]{(see Chapter \ref{#1})}
+%
+% RESULT = Abschnitt 3.4 (siehe Seite 12)
+\newcommand{\ctextref}[1]{Chapter~\ref{#1}}
 %
 % --------------------------------------------------
 % RESULT = (siehe Abb. 10.4)
-\newcommand*{\fref}[1]{(see fig.~\ref{#1})}
+\newcommand*{\fref}[1]{(c.f. Fig.~\ref{#1})}
 %
 % RESULT = (siehe Abb. 10.4 b)
-\newcommand*{\frefadd}[2]{(see fig.~\ref{#1}~#2)}
+\newcommand*{\frefadd}[2]{(c.f. Fig.~\ref{#1}~#2)}
 %
 % RESULT = (siehe Abb. 10.4, Seite 12)
-\newcommand*{\figref}[1]{(see fig.~\ref{#1}, page~\pageref{#1})}
+\newcommand*{\figref}[1]{(c.f. Fig.~\ref{#1}, page~\pageref{#1})}
 %
 % RESULT = (siehe Abb. 10.4 b, Seite 12)
-\newcommand*{\figrefadd}[2]{(see fig.~\ref{#1}~#2, page~\pageref{#1})}
+\newcommand*{\figrefadd}[2]{(c.f. Fig.~\ref{#1}~#2, page~\pageref{#1})}
 %
 % RESULT = Abbildung 10.4
-\newcommand*{\figreft}[1]{figure~\ref{#1}}
+\newcommand*{\figreft}[1]{Figure~\ref{#1}}
 %
 % RESULT = Abbildung 10.4 b
-\newcommand*{\figrefaddt}[2]{figure~\ref{#1}~#2}
+\newcommand*{\figrefaddt}[2]{Figure~\ref{#1}~#2}
 %
 % --------------------------------------------------
 % RESULT = (siehe Seite 12)
 \newcommand*{\seepage}[1]{(see page~\pageref{#1})}
-
-% **************************************************
-% Commands for adding several figures
-% **************************************************
-%
-\newcommand*{\plotsquare}[9]{
-	\begin{figure}[h]
-		\centering
-		\begin{tabular}{cc}%
-			\includegraphics[width=0.5\textwidth]{#1} &   \includegraphics[width=0.5\textwidth]{#3} \\
-				(a) #2 & (b) #4 \\[6pt]
-			\includegraphics[width=0.5\textwidth]{#5} &   \includegraphics[width=0.5\textwidth]{#7} \\
-				(c) #6 & (d) #8
-		\end{tabular}%
-		\caption{#9}%
-	\end{figure}%
-}
-
-
+\newcommand*{\refpage}[1]{(page~\pageref{#1})}
 
 
 % **************************************************
@@ -578,8 +556,8 @@
 \newcommand{\thesispartlabelfont}{\color{ctcolorpartnum}\book\fontsize{60}{60}\selectfont}
 \newcommand{\thesispartfont}{\color{ctcolorparttext}\Huge \tgherosfont\selectfont}
 \newcommand{\thesischapterfont}{\color{ctcolorblack}\huge\tgherosfont}
-%\newcommand{\thesissectionfont}{\color{ctcolormain}\LARGE\bfseries \tgherosfont}
-\newcommand{\thesissectionfont}{\color{ctcolorsection}\LARGE \tgherosfont}
+\newcommand{\thesissectionfont}{\color{ctcolormain}\LARGE\bfseries \tgherosfont}
+% \newcommand{\thesissectionfont}{\color{ctcolorsection}\LARGE \tgherosfont}
 \newcommand{\thesissubsectionfont}{\color{ctcolorsubsection}\Large \tgherosfont}
 \newcommand{\thesissubsubsectionfont}{\color{ctcolorsubsubsection} \large \tgherosfont}
 \newcommand{\thesisparagraphfont}{\color{ctcolorparagraph}\tgherosfont\small\bfseries}
@@ -789,5 +767,9 @@
 	\end{minipage}%
 	}%
 %
+
+\hbadness=10001
+\vbadness=10001
+
 % Clean signs around word origins in definitions
 %\newcommand{\cthesisorigin}[1]{\textsf{\textlangle}#1\textsf{\textrangle}}
