@@ -272,6 +272,11 @@
 \RequirePackage{euler}
 \RequirePackage{upgreek}
 \RequirePackage{rotating}
+\RequirePackage[acronym, automake]{glossaries-extra}
+\setabbreviationstyle[acronym]{long-short-user}
+
+\RequirePackage{xargs}
+\RequirePackage[colorinlistoftodos,prependcaption,textsize=tiny]{todonotes}
 \DeclareMathSizes{10}{11}{7}{7}   % For size 10 text
 \DeclareMathSizes{11}{12}{8}{8}      % For size 11 text
 \DeclareMathSizes{12}{13}{8}{8}     % For size 12 text
@@ -465,7 +470,8 @@
 % **************************************************
 % TODO command
 \definecolor{color_todo}{rgb}{.6,.8,.2}
-\newcommand{\TODO}[1]{{\color{color_todo}\textbf{[TODO #1]}}}
+\newcommandx{\TODO}[2][1=]{\todo[linecolor=red, backgroundcolor=red!25, bordercolor=red,#1]{#2}}
+
 %
 %
 % ref commands, e.g. for images, tables and text labels
