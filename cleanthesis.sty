@@ -77,15 +77,15 @@
 \define@choicekey*[ct]{cthesis}{colorize}[\val\colorizenr]{full,reduced,bw}[full]{\def\cthesis@colorize{\colorizenr}}
 \setkeys[ct]{cthesis}{colorize=full}
 
-% OPTION colortheme
-% --> values = bluemagenta|bluegreen|rwth
-\define@choicekey*[ct]{cthesis}{colortheme}[\val\themenr]{bluemagenta,bluegreen,rwth}[rwth]{\def\cthesis@colortheme{\themenr}}
-\setkeys[ct]{cthesis}{colortheme=rwth}
+% OPTION colortheme Mind order
+% --> values = bluemagenta|bluegreen|viridis|rwth
+\define@choicekey*[ct]{cthesis}{colortheme}[\val\themenr]{bluemagenta,bluegreen,viridis,rwth}[viridis]{\def\cthesis@colortheme{\themenr}}
+\setkeys[ct]{cthesis}{colortheme=viridis}
 
 % OPTION bibsys
 % --> values = biber|bibtex
 \define@choicekey*[ct]{cthesis}{bibsys}[\val\bibsysnr]{biber,bibtex}[bibtex]{\def\cthesis@bibsys{#1}}
-\setkeys[ct]{cthesis}{bibsys=bibtex}
+\setkeys[ct]{cthesis}{bibsys=biber}
 
 % OPTION bibfile
 % --> values = file name of your bibtex file
@@ -199,6 +199,10 @@
 	\cthesissetcolor{cmyk}{1, .47, 0, .38}{0, .32, 1, .04}%
 }
 
+\def\cthesissetcolorviridis{%
+	\cthesissetcolor{RGB}{49, 104, 142}{31, 158, 137}%
+}
+
 % defines general colors
 \definecolor{ctcolorblack}{gray}{0}
 \definecolor{ctcolorgray}{gray}{.5}
@@ -212,19 +216,22 @@
 	% case 1 (colortheme == bluegreen)
 	\cthesissetcolorbluegreen
 \or
+	% case 4 (colortheme == viridis)
+	\cthesissetcolorviridis
+\or
 	% case 4 (colortheme == rwth)
 	\cthesissetcolorrwth
 		
 \else
 	% all other cases
-	\cthesissetcolorrwth
+	\cthesissetcolorviridis
 \fi
 
 
 % **************************************************
 % Font Definitions (see http://www.tug.dk/FontCatalogue/)
 % **************************************************
-\RequirePackage[T1]{fontenc}		% font types and character verification
+% \RequirePackage[T1]{fontenc}		% font types and character verification
 %\ifthenelse{\boolean{@sansserif}}%
 \ifct@cthesis@sansserif
 %	{%
@@ -243,7 +250,9 @@
 		%
 		% \RequirePackage{lmodern}	% font set: Latin Modern
 		% \RequirePackage{charter}	% font set: Charter
-		\RequirePackage[sfdefault]{ClearSans}
+		\RequirePackage[sfdefault,lining]{FiraSans} %% option 'sfdefault' activates Fira Sans as the default text font
+		\RequirePackage[fakebold]{firamath-otf}
+		\renewcommand*\oldstylenums[1]{{\firaoldstyle #1}}		% \RequirePackage[sfdefault]{ClearSans}
 		\renewcommand*\familydefault{\sfdefault}%
 
 		
@@ -269,7 +278,8 @@
 \RequirePackage{wrapfig}
 \RequirePackage{multirow}
 \RequirePackage{pdfpages}
-\RequirePackage{euler}
+\RequirePackage{harveyballs}
+% \RequirePackage{euler}
 \RequirePackage{upgreek}
 \RequirePackage{rotating}
 \RequirePackage[acronym, automake]{glossaries-extra}
@@ -295,16 +305,16 @@
 	paper=a4paper,					% 	- use A4 paper size
 	% scale={0.86,0.94},				% 	- total body size (h,v)
 	%scale={0.86,0.94},				% 	- total body size (h,v)
-	nohead,							% 	- no header
+	% nohead,							% 	- no header
 	includefoot,					% 	- include footer space
-	includemp,						% 	- include side note space
-	bindingoffset=0.5cm,			% 	- binding correction
-	top=2.25cm,						% 	- total body: top margin
-	left=2.25cm,					% 	- total body: left margin (odd pages)
-	right=0.75cm,					% 	- total body: right margin (odd pages)
-	bottom=1.5cm,					% 	- total body: bottom margin
-	marginparwidth=1.75cm,			% 	- width for side note
-	marginparsep=10pt,				% 	- space between notes and body text (content)
+	% includemp,						% 	- include side note space
+	% bindingoffset=0.5cm,			% 	- binding correction
+	top=2cm,						% 	- total body: top margin
+	left=2.5cm,					% 	- total body: left margin (odd pages)
+	right=2.5cm,					% 	- total body: right margin (odd pages)
+	bottom=2cm,					% 	- total body: bottom margin
+	% marginparwidth=1.75cm,			% 	- width for side note
+	% marginparsep=10pt,				% 	- space between notes and body text (content)
 	footskip=2cm,					% 	- footer skip size
 ]{geometry}
 %
