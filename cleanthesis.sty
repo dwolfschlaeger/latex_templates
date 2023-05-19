@@ -207,6 +207,9 @@
 \definecolor{ctcolorblack}{gray}{0}
 \definecolor{ctcolorgray}{gray}{.5}
 \definecolor{ctcolorgraylight}{gray}{.8}
+\definecolor{ctcolorgreen}{HTML}{55C667}
+\definecolor{ctcoloryellow}{HTML}{FDE725}
+\definecolor{ctcolorred}{RGB}{204,7,30}
 
 % sets the color theme regarding the given package option colortheme
 \ifcase\cthesis@colortheme
@@ -231,8 +234,12 @@
 % **************************************************
 % Font Definitions (see http://www.tug.dk/FontCatalogue/)
 % **************************************************
-% \RequirePackage[T1]{fontenc}		% font types and character verification
-%\ifthenelse{\boolean{@sansserif}}%
+
+\RequirePackage{fontspec}
+
+% \else
+% 	\RequirePackage[T1]{fontenc}		% font types and character verification
+% 	\ifthenelse{\boolean{@sansserif}}%
 \ifct@cthesis@sansserif
 %	{%
 		% Using sans-serif fonts
